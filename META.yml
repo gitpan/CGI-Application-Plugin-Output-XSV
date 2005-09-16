@@ -1,0 +1,19 @@
+---
+name: CGI-Application-Plugin-Output-XSV
+version: 0.01
+author:
+  - Evan A. Zacks <zackse@cpan.org>
+abstract: Produce XSV output from a CGI::Application runmode
+license: perl
+requires:
+  CGI::Application: 0
+  Test::More: 0
+  Text::CSV_XS: 0
+recommends:
+  Test::Exception: 0
+  Test::MockObject: 0
+provides:
+  CGI::Application::Plugin::Output::XSV:
+    file: XSV.pm
+    version: 0.01
+generated_by: Module::Build version 0.2611
