@@ -1,4 +1,4 @@
-# $Id: XSV.pm 17 2005-09-16 00:52:56Z zackse $
+# $Id: XSV.pm 26 2005-09-22 15:21:37Z zackse $
 
 package CGI::Application::Plugin::Output::XSV;
 
@@ -25,7 +25,7 @@ our %EXPORT_TAGS= (
   all => [ @EXPORT, @EXPORT_OK ],
 );
 
-our $VERSION= '0.01';
+our $VERSION= '0.02';
 
 ##
 
@@ -179,7 +179,7 @@ __END__
 
 =head1 NAME
 
-CGI::Application::Plugin::Output::XSV - generate XSV output from a CGI::App runmode
+CGI::Application::Plugin::Output::XSV - generate csv output from a CGI::Application runmode
 
 =head1 SYNOPSIS
 
@@ -202,7 +202,7 @@ CGI::Application::Plugin::Output::XSV - generate XSV output from a CGI::App runm
 
 =head1 DESCRIPTION
 
-C<CGI::Application::Plugin::Output::XSV> provides xsv-related routines
+C<CGI::Application::Plugin::Output::XSV> provides csv-related routines
 useful for web applications (via L<Text::CSV_XS|Text::CSV_XS>).
 
 A method, C<xsv_report_web> is exported by default. Three other
@@ -285,7 +285,7 @@ available options.
     filename   => 'members.csv',
   });
 
-This method generates an XSV file that is sent directly to the user's
+This method generates a csv file that is sent directly to the user's
 web browser. It sets the content-type header to 'application/x-csv' and sets
 the content-disposition header to 'attachment'.
 
@@ -317,7 +317,7 @@ header. The default is "download.csv".
 =item headers
 
 A reference to an array of column headers to be used as the first row
-of the xsv report.
+of the csv report.
 
 If C<headers> is not supplied (and C<include_headers> is not set
 to a false value), C<headers_cb> will be called with C<fields>
@@ -388,7 +388,7 @@ the field list (C<fields> - reference to an array)
    }
 
 This function, used internally by C<xsv_report>/C<xsv_report_web>,
-formats a list of values for inclusion an xsv file. The return value is
+formats a list of values for inclusion a csv file. The return value is
 from C<< $csv->string() >>, where C<$csv> is a L<Text::CSV_XS(3)|Text::CSV_XS> object.
 
 It takes three parameters:
@@ -448,7 +448,7 @@ if the C<headers_cb> parameter is not supplied.
 
   # do something with $output
 
-This function generates a string containing XSV data and returns it.
+This function generates a string containing csv data and returns it.
 
 This may be useful
 when you want to do some manipulation of the data before sending it to
@@ -606,6 +606,7 @@ which is not applicable to this function.
   });
 
   __END__
+  Foo,Bar,Baz
   2,3,4
 
 =item Pass list of lists (instead of hashes)
@@ -639,7 +640,15 @@ documentation for details about what type of input causes a failure.
 
 =head1 AUTHOR
 
-Evan A. Zacks <evan@commonmind.com>
+Evan A. Zacks C<< <evan@commonmind.com> >>
+
+=head1 BUGS
+
+Please report any bugs or feature requests to
+C<bug-cgi-application-plugin-output-xsv@rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=CGI-Application-Plugin-Output-XSV>.
+I will be notified, and then you'll automatically be notified of progress on
+your bug as I make changes.
 
 =head1 SEE ALSO
 
@@ -654,6 +663,6 @@ and/or modify it under the same terms as Perl itself.
 
 =head1 REVISION
 
-$Id: XSV.pm 17 2005-09-16 00:52:56Z zackse $
+$Id: XSV.pm 26 2005-09-22 15:21:37Z zackse $
 
 =cut
