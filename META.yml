@@ -1,6 +1,6 @@
 ---
 name: CGI-Application-Plugin-Output-XSV
-version: 0.02
+version: 0.03
 author:
   - Evan A. Zacks <zackse@cpan.org>
 abstract: Produce csv output from a CGI::Application runmode
@@ -16,5 +16,5 @@ build_requires:
 provides:
   CGI::Application::Plugin::Output::XSV:
     file: XSV.pm
-    version: 0.02
+    version: 0.03
 generated_by: Module::Build version 0.2611
