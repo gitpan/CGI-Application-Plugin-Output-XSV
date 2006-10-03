@@ -1,4 +1,4 @@
-# $Id: XSV.pm 31 2005-11-23 15:46:45Z zackse $
+# $Id: XSV.pm 36 2006-10-03 03:29:55Z zackse $
 
 package CGI::Application::Plugin::Output::XSV;
 
@@ -25,7 +25,7 @@ our %EXPORT_TAGS= (
   all => [ @EXPORT, @EXPORT_OK ],
 );
 
-our $VERSION= '0.03';
+our $VERSION= '0.9';
 
 ##
 
@@ -73,7 +73,7 @@ sub xsv_report {
     }
   }
   else {
-    croak "values is an empty list, aborting";
+    croak "can't determine field names (values is an empty list), aborting";
   }
 
   # function to retrieve each row of data from $opts{values}
@@ -82,7 +82,7 @@ sub xsv_report {
   if( $opts{get_row_cb} ) {
     $get_row= $opts{get_row_cb};
   }
-  else {
+  elsif ( @{ $opts{values} } ) {
     my $list_type= ref( $opts{values}[0] );
 
     if( $list_type eq 'HASH' ) {
@@ -94,6 +94,10 @@ sub xsv_report {
     else {
       croak "unknown list type [$list_type]";
     }
+  }
+  else {
+    # empty values list -- always return empty list
+    $get_row= sub { return [] };
   }
 
   my $csv= Text::CSV_XS->new( $opts{csv_opts} );
@@ -270,7 +274,7 @@ available options.
   my @members= (
     { member_id  => 1,
       first_name => 'Chuck',
-      last_name  => 'Barry', },
+      last_name  => 'Berry', },
     ...
   );
 
@@ -378,12 +382,12 @@ The value appended to each line of csv output. The default is "\n".
   values => [
     { member_id  => 1,
       first_name => 'Chuck',
-      last_name  => 'Barry', },
+      last_name  => 'Berry', },
   ],
 
   # or a list of lists
   values => [
-    [ 1, 'Chuck', 'Barry', ],
+    [ 1, 'Chuck', 'Berry', ],
   ],
 
 A reference to a list of hash references (such as
@@ -716,6 +720,6 @@ and/or modify it under the same terms as Perl itself.
 
 =head1 REVISION
 
-$Id: XSV.pm 31 2005-11-23 15:46:45Z zackse $
+$Id: XSV.pm 36 2006-10-03 03:29:55Z zackse $
 
 =cut

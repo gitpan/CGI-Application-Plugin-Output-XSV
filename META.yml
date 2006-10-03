@@ -1,20 +1,13 @@
----
-name: CGI-Application-Plugin-Output-XSV
-version: 0.03
-author:
-  - Evan A. Zacks <zackse@cpan.org>
-abstract: Produce csv output from a CGI::Application runmode
-license: perl
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         CGI-Application-Plugin-Output-XSV
+version:      0.9
+version_from: XSV.pm
+installdirs:  site
 requires:
-  CGI::Application: 0
-  Text::CSV_XS: 0
-recommends:
-  Test::Exception: 0
-  Test::MockObject: 0
-build_requires:
-  Test::More: 0
-provides:
-  CGI::Application::Plugin::Output::XSV:
-    file: XSV.pm
-    version: 0.03
-generated_by: Module::Build version 0.2611
+    CGI::Application:              0
+    Test::More:                    0
+    Text::CSV_XS:                  0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17
